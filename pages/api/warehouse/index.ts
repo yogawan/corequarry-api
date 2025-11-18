@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import Warehouse from "@/models/Warehouse";
 import { mongoConnect } from "@/lib/mongoConnect";
+import { enableCors } from "@/middleware/enableCors";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   await mongoConnect();
@@ -30,4 +31,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default handler;
+export default enableCors(handler);

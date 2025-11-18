@@ -1,7 +1,8 @@
-// pages/api/inventory-forecast/index.ts
+// @/pages/api/inventory-forecast/index.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import InventoryForecast from "@/models/InventoryForecast";
 import { mongoConnect } from "@/lib/mongoConnect";
+import { enableCors } from "@/middleware/enableCors";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   await mongoConnect();
@@ -33,4 +34,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default handler;
+export default enableCors(handler);
